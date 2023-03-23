@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --clr-icons: #929292;
+            --clr-text: #fff;
+            --clr-bg-dark: rgb(30, 2, 2);
+            --clr-bg-light: #651818da;
+            --clr-accent: #fb2d0d;
+        }
+        
+        body {
+            margin: 1em;
+            background-color: var(--clr-bg-dark);
+            color: var(--clr-text);
+            line-height: 1.5;
+            font-family: sans-serif;
+        }
+        /* used to make the page responive */
+        
+        img {
+            max-width: 100%;
+        }
+        
+        .btn {
+            cursor: pointer;
+            display: inline-block;
+            border: 0;
+            background: transparent;
+            color: var(--clr-text);
+            font-size: 1.125rem;
+            padding: 0.5em;
+            position: relative;
+            align-self: start;
+            justify-self: start;
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            background: var(--clr-accent);
+            height: .85em;
+            width: 75%;
+            left: 0;
+            top: 50%;
+            z-index: -1;
+            transition: transform 250ms cubic-bezier(.68, -0.55, .27, 1.55);
+            transform-origin: bottom left;
+        }
+        
+        .btn:hover::after,
+        .btn:focus::after {
+            transform: scale(1.35, 1.85);
+        }
+        
+        .title {
+            color: var(--clr-accent);
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1;
+            /* clamp(minimumsize , the rate at which the size increases 
+            or decreases while shrinking the window , maximum sizeof the 
+            font) */
+            font-size: clamp(3rem, 10vw, 7rem);
+        }
+        
+        .location {
+            color: var(--clr-icons);
+            margin: 0;
+            font-size: 1.5rem;
+            margin-bottom: 1.5em;
+        }
+        
+        header {
+            /*sothat the logo and nav go side by side */
+            display: flex;
+            align-items: centre;
+            margin: 2em 0;
+        }
+        
+        footer {
+            margin-top: 2em;
+        }
+        
+        .nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-around;
+            font-size: medium;
+        }
+        
+        .nav__link {
+            color: var(--clr-text);
+            text-transform: capitalize;
+            text-decoration: none;
+        }
+        
+        .nav__link:hover,
+        .nav__link:focus {
+            color: var(--clr-accent);
+        }
+        
+        .secondary-images {
+            display: flex;
+            gap: 0.5em;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 2em;
+        }
+        
+        .social-link:hover,
+        .social-link:focus {
+            opacity: 0.5;
+        }
+        
+        @media (min-width:800px) {
+            body {
+                margin: 0;
+            }
+            .main-grid {
+                display: grid;
+                grid-template-columns: minmax(1em, 1fr) repeat(2, minmax(15rem, 35rem)) minmax(5rem, 10rem) minmax(1em, 1fr);
+                gap: 2em;
+                position: relative;
+            }
+            header {
+                grid-column: 2/5;
+                display: grid;
+                grid-template-columns: subgrid;
+            }
+            .nav {
+                grid-column: 2/5;
+            }
+            main {
+                grid-column: 2/ -1;
+                display: grid;
+                grid-template-columns: subgrid;
+                grid-auto-flow: dense;
+                grid-auto-rows: min-content;
+            }
+            main::after {
+                content: "";
+                position: absolute;
+                background-color: var(--clr-bg-light);
+                top: 0;
+                bottom: 0;
+                left: -2em;
+                right: -2em;
+                grid-column: 3/5;
+                z-index: -10;
+            }
+            .title {
+                grid-column: 1/3;
+                grid-row: 1;
+            }
+            .location,
+            .description {
+                grid-column: 1/2;
+            }
+            footer {
+                grid-column: 2/3;
+            }
+            .primary-image {
+                grid-column: 2/ -1;
+                grid-row: 1/ span 4;
+                z-index: -1;
+                width: min(100%, 1000px);
+                object-fit: cover;
+            }
+            .secondary-images {
+                grid-column: 2/4;
+                margin-top: 4em;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            main::after {
+                grid-column: 3/4;
+            }
+            .nav,
+            .secondary-images {
+                grid-column: 2/3;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-grid">
+        <header>
+            <img class="logo" src="static/Book Recommender.jpg" alt="Book Recommender " width="50px" height="55px">
+            <nav class=" nav ">
+                <!--a.nav__link*4-->
+                <a href="/ " class="nav__link ">HOME</a>
+                <a href="/top " class="nav__link ">Top 20</a>
+                <a href="/recommend " class="nav__link ">Recommender</a>
+
+            </nav>
+        </header>
+        <main>
+            <h1 class="title ">Book Recommender</h1>
+            <p class="location ">We know you love to explore new books !</p>
+            <img src=" static/main.jpg" alt="" class="primary-image" height="500px">
+            <div class="secondary-images ">
+                <img src="static/exploregenre.jpg" alt=" " class="secondary-image" height="150px">
+                <img src="static/recommendbooks.jpg " alt=" " class="secondary-image " height="150px">
+            </div>
+            <p class="description ">Don't know which book to read next ? Help our Book Recommender , recommend you a book . </p>
+            <a href="/recommend"><button class="btn ">Recommend Now</button></a>
+        </main>
+        <footer>
+            <div class="social-links ">
+                <a href=" " class="social-link " aria-label=" "><img src="static/instagram.svg" alt=" " class="social-image "></a>
+                <a href=" " class="social-link " aria-label=" "><img src="static/snapchat-ghost.svg" alt=" " class="social-image "></a>
+
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
+<!--<!DOCTYPE html>
+<html lang=" en ">
+
+<head>
+    <meta charset="UTF-8 ">
+    <meta http-equiv="X-UA-Compatible " content="IE=edge ">
+    <meta name="viewport " content="width=device-width, initial-scale=1.0 ">
+    <title>Home</title>
+    <!-- Latest compiled and minified CSS //CLOSE THE COMMENTS 
+
+<link rel="stylesheet " href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css " integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu " crossorigin="anonymous ">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js "></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js "></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css " rel="stylesheet " integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD " crossorigin="anonymous ">
+<link rel="stylesheet " href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css " integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u " crossorigin="anonymous ">
+<style>
+    .wood {
+        background: url(http://1.bp.blogspot.com/-tXavBQFjNFQ/VMSaYaq7PtI/AAAAAAAADSc/awMPRe3yu5A/s1600/wood_pattern.png);
+    }
+</style>
+</head>
+
+<body style=" background-image: url( 'https://media.istockphoto.com/id/484096068/photo/wooden-texture-background.jpg?b=1&s=170667a&w=0&k=20&c=RWLEm-1NkqPzEgrX0zRid7WHtclBQBmI4RQZlouc02g='); "></body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary " style="background-color: rgb(212, 17, 3); ">
+    <div class="container-fluid " style="background-color: rgb(12, 12, 12); "><a class=" navbar-brand " href="/ "><button class="wood ">Home</button></a><button class="navbar-toggler " type="button " data-bs-toggle="collapse " data-bs-target="#navbarNavAltMarkup
+                    " aria-controls="navbarNavAltMarkup " aria-expanded="false " aria-label="Toggle navigation "><span class="navbar-toggler-icon "></span></button>
+        <div class="collapse navbar-collapse " id="navbarNavAltMarkup ">
+            <div class="navbar-nav "><a class="navbar-brand " href="/top "><button class="wood ">Top 20</button></a>
+                <a class="navbar-brand " href="/recommend "><button class="wood ">Recommender</button></a></div>
+        </div>
+    </div>
+</nav>
+<div class="container ">
+    <div id="myCarousel " class="carousel slide " data-ride="carousel ">
+        <!-- Indicators //CLOSE THE COMMENTS
+<ol class="carousel-indicators ">
+    <li data-target="#myCarousel " data-slide-to="0 " class="active "></li>
+    <li data-target="#myCarousel " data-slide-to="1 "></li>
+    <li data-target="#myCarousel " data-slide-to="2 "></li>
+</ol>
+<!-- Wrapper for slides //CLOSE THE COMMENTS
+<div class="carousel-inner ">
+    <div class="item active "><img src="static/main.jpg " alt="Welcome! " style="width:100%;height: 60rem; ">
+        <div class="carousel-caption ">
+            <h3>Welcome!</h3>
+            <p>Explore our Website!</p>
+        </div>
+    </div>
+    <div class="item "><img src="static/exploregenre.jpg " alt="Top 20 " style="width:100%;height: 60rem; ">
+        <div class="carousel-caption ">
+            <h3>Top 20 Books</h3><a href="/top "><button class="btn btn-dark ">Explore!</button></a></div>
+    </div>
+    <div class="item "><img src="static/recommendbooks.jpg " alt="Book Recommendation System " style="width:100%;height: 60rem; ">
+        <div class="carousel-caption ">
+            <h3>Recommend yourself some similar books !</h3><a href="/recommend "><button class="btn btn-dark ">Explore!</button></a></div>
+    </div>
+</div>
+<!-- Left and right controls // CLOSE THE COMMENTS <a class="left carousel-control " href="#myCarousel " data-slide="prev "><span class="glyphicon glyphicon-chevron-left "></span><span class="sr-only ">Previous</span></a><a class="right carousel-control
+                    " href="#myCarousel " data-slide="next "><span class="glyphicon glyphicon-chevron-right "></span><span class="sr-only ">Next</span></a></div>
+</div>
+</body>
+
+</html>-->
+
+</html>-->

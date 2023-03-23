@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Top20</title>
+    <style>
+        .col-md-12:hover {
+            -ms-transform: scale(1.2);
+            /* IE 9 */
+            -webkit-transform: scale(1.2);
+            /* Safari 3-8 */
+            transform: scale(1.2);
+        }
+        
+        body {
+            background-color: rgb(48, 32, 32);
+        }
+        
+        header {
+            /*sothat the logo and nav go side by side */
+            display: flex;
+            align-items: centre;
+            margin: 2em 0;
+        }
+        
+        .nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-around;
+            text-decoration: none;
+            text-size-adjust: auto;
+            margin-top: ;
+            font-size: medium;
+        }
+        
+        .nav__link {
+            color: rgb(254, 247, 247);
+            text-transform: capitalize;
+            text-decoration: none;
+        }
+        
+        .nav__link:hover,
+        .nav__link:focus {
+            color: rgb(203, 151, 151);
+            text-decoration: none;
+        }
+        
+        .title {
+            color: rgb(245, 114, 7);
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1;
+            /* clamp(minimumsize , the rate at which the size increases 
+            or decreases while shrinking the window , maximum sizeof the 
+            font) */
+            font-size: clamp(3rem, 10vw, 7rem);
+        }
+        
+        .col-md-12 {
+            align-content: space-evenly;
+            animation: backwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-grid">
+        <header>
+            <img class="logo" src="static/Book Recommender.jpg" alt="Book Recommender " width="50px" height="55px">
+
+            <nav class="nav">
+                <!--a.nav__link*4-->
+                <a href="/ " class="nav__link ">HOME</a>
+                <a href="/top " class="nav__link ">Top 20</a>
+                <a href="/recommend " class="nav__link ">Recommender</a>
+
+
+            </nav>
+        </header>
+        <main>
+            <h1 class="title ">Top 20 :</h1>
+            <div class="game">
+                {% for i in range(book_name|length) %}
+
+                <div class="col-md-12" style=" width: 20rem ;margin :50px; margin-top: 50px; padding : 5px ; height: 300px; background-color: rgb(145, 123, 114); ">
+                    <img src="{{ image[i] }} " class="card-img-top " style="height: 15rem; ">
+                    <div class="card-body ">
+
+                        <h5 class="card-title ">
+                            <b>{{ book_name[i] }}</b></h5>
+
+                        <p class="card-text ">{{ author[i] }}</p>
+                        <p class="card-text ">Votes - {{ votes[i] }}</p>
+                        <p class="card-text ">Ratings - {{ ratings[i] }}</p>
+
+                    </div>
+
+
+                </div>
+                {% endfor %}
+            </div>
+
+
+        </main>
+
+    </div>
+</body>
+
+</html>
